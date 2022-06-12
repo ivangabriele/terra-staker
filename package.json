@@ -1,7 +1,7 @@
 {
   "name": "terra-staker",
+  "description": "A Terra wallet auto-staker.",
   "version": "0.0.0",
-  "description": "",
   "license": "AGPL-3.0",
   "type": "module",
   "engines": {

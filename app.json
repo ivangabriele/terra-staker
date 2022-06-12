@@ -1,0 +1,29 @@
+{
+  "name": "Terra Staker",
+  "description": "A Terra wallet auto-staker.",
+  "keywords": [],
+  "logo": "https://raw.githubusercontent.com/ivangabriele/terra-staker/main/public/logo.svg",
+  "repository": "https://github.com/ivangabriele/terra-staker",
+  "env": {
+    "MNEMONIC": {
+      "description": "Wallet Mnemonic.",
+      "required": true
+    },
+    "THRESHOLD": {
+      "description": "Threshold amount in LUNAs.",
+      "required": true,
+      "value": "20"
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "hobby"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
