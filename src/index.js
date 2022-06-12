@@ -49,16 +49,13 @@ export async function run() {
     .padStart(12, ' ')
   B.info(`Pending Reward:   ${pendingRewardAmountLog} LUNA`)
 
-  // console.log(
-  //   (await lcdClient.tx.txInfo('7EA8B3FF0A920E621FA2DD5B7F03722F669D81C439B63EFCB8B8AB104FF34473')).logs[0].events,
-  // )
-
   if (pendingRewardAmount >= REWARD_AMOUNT_THRESHOLD) {
     const pendingRewardWithdrawalMessage = new MsgWithdrawDelegatorReward(DELEGATOR_ADDRESS, VALIDATOR_ADDRESS)
     const pendingRewardWithdrawalTx = await wallet.createAndSignTx({ msgs: [pendingRewardWithdrawalMessage] })
     // eslint-disable-next-line no-unused-vars
     const pendingRewardWithdrawalTxResult = await lcdClient.tx.broadcast(pendingRewardWithdrawalTx)
 
+    await waitFor(10)
     B.success(`Withdrawn Reward: ${pendingRewardAmountLog} LUNA`)
 
     const balanceAmount = (await lcdClient.bank.balance(DELEGATOR_ADDRESS))[0].get('uluna').amount
