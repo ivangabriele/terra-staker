@@ -1,0 +1,6 @@
+{
+  "extends": "@ivangabriele/eslint-config-base",
+  "rules": {
+    "import/extensions": ["error", "ignorePackages"]
+  }
+}
