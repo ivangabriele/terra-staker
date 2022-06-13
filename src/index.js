@@ -41,9 +41,16 @@ export async function run() {
     .padStart(12, ' ')
   B.info(`Current Stake:    ${currentStakeAmountLog} LUNA`)
 
-  const pendingRewardAmount = (await lcdClient.distribution.rewards(DELEGATOR_ADDRESS)).rewards[VALIDATOR_ADDRESS].get(
+  const pendingRewardCoin = (await lcdClient.distribution.rewards(DELEGATOR_ADDRESS)).rewards[VALIDATOR_ADDRESS].get(
     'uluna',
-  ).amount
+  )
+  if (pendingRewardCoin === undefined) {
+    await waitFor(10)
+    run()
+
+    return
+  }
+  const pendingRewardAmount = pendingRewardCoin.amount
   const pendingRewardAmountLog = numeral(pendingRewardAmount / 1000000)
     .format('0,0.00')
     .padStart(12, ' ')
