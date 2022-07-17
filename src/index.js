@@ -1,9 +1,8 @@
 import { Coin, Coins, LCDClient, MnemonicKey, MsgDelegate, MsgWithdrawDelegatorReward } from '@terra-money/terra.js'
 import { B } from 'bhala'
-// eslint-disable-next-line import/no-unresolved
-import got from 'got'
 import numeral from 'numeral'
 
+import { getGasPrices } from './helpers/getGasPrices.js'
 import { waitFor } from './helpers/waitFor.js'
 
 const { MNEMONIC, THRESHOLD } = process.env
@@ -17,7 +16,7 @@ const mnemonicKey = new MnemonicKey({
 })
 
 export async function run() {
-  const gasPrices = await got.get('https://pisco-api.terra.dev/gas-prices').json()
+  const gasPrices = await getGasPrices()
   const gasPricesCoins = new Coins(gasPrices)
 
   const lcdClient = new LCDClient({
