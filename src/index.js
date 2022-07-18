@@ -80,12 +80,12 @@ export async function run() {
       B.success(`New Stake:        ${newStakeAmountLog} LUNA`)
     }
 
-    await waitFor(10)
+    await waitFor(30)
     run()
   } catch (err) {
     B.error(String(err))
 
-    await waitFor(60)
+    await waitFor(120)
     run()
   }
 }
