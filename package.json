@@ -6,7 +6,7 @@
   "type": "module",
   "engines": {
     "node": "16",
-    "npm": "8",
+    "npm": "9",
     "yarn": "1"
   },
   "scripts": {
